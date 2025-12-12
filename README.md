@@ -8,8 +8,11 @@
 
 **Unified Family Identity & Aid Management for Malaysia**
 
+🏆 **GodamLah2.0 Hackathon Project** 🏆
+
 Built by **BlockNexa Labs**
 
+[![GodamLah2.0](https://img.shields.io/badge/GodamLah-2.0-orange)](https://godam.my)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
@@ -31,6 +34,7 @@ Built by **BlockNexa Labs**
 - [Getting Started](#-getting-started)
 - [Demo Script](#-demo-script)
 - [Roadmap](#-roadmap)
+- [Team](#-team)
 - [Contributing](#-contributing)
 - [License](#-license)
 
@@ -126,73 +130,8 @@ Approved funds are **automatically distributed** to:
 
 ## 🔄 System Architecture
 
-![MyFamilyLink System Architecture](attachments/architecture-diagram.png)
+![MyFamilyLink System Architecture](images/Flowchart.png)
 
-### Professional Privacy-Preserving Aid Distribution Flow
-
-The system operates through four distinct layers:
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    CITIZEN & TOUCHPOINT LAYER                           │
-│  • MyKad NFC Authentication                                             │
-│  • Fingerprint/MySejahtera Biometric Verification                       │
-└────────────────────────────┬────────────────────────────────────────────┘
-                             │
-                             ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│              SECURE BACKEND ENGINE (Privacy-Preserving)                 │
-│                                                                          │
-│  ┌──────────────────────────────────────────────────────────┐          │
-│  │  Identity & Request Handler                               │          │
-│  │  • Validates NRIC + Digital Signature                     │          │
-│  └────────────┬─────────────────────────────────────────────┘          │
-│               │                                                          │
-│               ▼                                                          │
-│  ┌──────────────────────────────────────────────────────────┐          │
-│  │  Data Aggregation Service                                 │          │
-│  │  • Fetches from LHDN (Income Range)                       │          │
-│  │  • Queries e-Kasih/JKM (Welfare Status)                   │          │
-│  │  • Retrieves NRD (Household Info)                         │          │
-│  └────────────┬─────────────────────────────────────────────┘          │
-│               │                                                          │
-│               ▼                                                          │
-│  ┌──────────────────────────────────────────────────────────┐          │
-│  │ 🔒 CRITICAL PRIVACY BARRIER                               │          │
-│  │                                                            │          │
-│  │  ZKP ELIGIBILITY ENGINE (Zero-Knowledge Proofs)           │          │
-│  │  • Raw Financial/Income Data NEVER leaves this boundary   │          │
-│  │  • Only mathematical proofs are generated                 │          │
-│  │  • Applies eligibility rules (STR, subsidies, education)  │          │
-│  │  • Generates ZK-Token (Yes/No proofs only, NO RAW DATA)   │          │
-│  └────────────┬─────────────────────────────────────────────┘          │
-│               │                                                          │
-│               ▼                                                          │
-│  ┌──────────────────────────────────────────────────────────┐          │
-│  │  Process Proof Generation                                 │          │
-│  │  • Creates eligibility token (contains only Yes/No)       │          │
-│  │  • Returns to edge device                                 │          │
-│  └──────────────────────────────────────────────────────────┘          │
-└─────────────────────────────────────────────────────────────────────────┘
-                             │
-                             ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                  TRUSTED GOVERNMENT DATABASES                           │
-│  • LHDN (Income Range verification)                                     │
-│  • e-Kasih/JKM (Welfare Status)                                         │
-│  • NRD (Household Information)                                          │
-└────────────────────────────┬────────────────────────────────────────────┘
-                             │
-                             ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                      DISTRIBUTION LAYER                                 │
-│  • Auto-Distribution triggers when "✅ Eligible"                        │
-│  • Financial intermediary (Central Bank Gateway)                        │
-│  • Secure payment instruction (NRD-to-Bank Mapping)                     │
-│  • Deposit funds to citizen's registered bank/e-wallet                  │
-│  • Notification sent to citizen                                         │
-└─────────────────────────────────────────────────────────────────────────┘
-```
 
 ### Data Flow Sequence
 
@@ -247,7 +186,7 @@ The system operates through four distinct layers:
 ### 1. MyKad Tap Screen
 
 <div align="center">
-<img src="attachments/scan-screen.png" width="600" alt="Scan MyKad Screen">
+<img src="images/MyKad.png" width="600" alt="Scan MyKad Screen">
 
 **Simple tap-to-verify interface** - Citizens place their MyKad on the NFC reader to begin verification. Alternative fingerprint and MySejahtera options available.
 </div>
@@ -257,7 +196,7 @@ The system operates through four distinct layers:
 ### 2. Eligibility Result
 
 <div align="center">
-<img src="attachments/eligibility-result.png" width="600" alt="Eligibility Result Screen">
+<img src="images/Eligibility.png" width="600" alt="Eligibility Result Screen">
 
 **Instant eligibility determination** - Citizens immediately see which aids they qualify for:
 - ✅ **Subsidy** - Eligible
@@ -273,7 +212,7 @@ Income classification (B40/M40/T20) shown with household details.
 ### 3. Family Dashboard
 
 <div align="center">
-<img src="attachments/dashboard.png" width="600" alt="Family Dashboard">
+<img src="images/Family.png" width="600" alt="Family Dashboard">
 
 **Comprehensive household view** showing:
 - 📊 Household classification (B40)
@@ -288,7 +227,7 @@ Income classification (B40/M40/T20) shown with household details.
 ### 4. Admin Panel
 
 <div align="center">
-<img src="attachments/admin-panel.png" width="600" alt="Admin Panel">
+<img src="images/Admin.png" width="600" alt="Admin Panel">
 
 **Government administrator dashboard** featuring:
 - 📊 Real-time statistics (Pending, Approved, Rejected, Distributed)
@@ -303,7 +242,7 @@ Income classification (B40/M40/T20) shown with household details.
 ### 5. Distribution Selection
 
 <div align="center">
-<img src="attachments/distribution-method.png" width="600" alt="Distribution Method Selection">
+<img src="images/Distribution.png" width="600" alt="Distribution Method Selection">
 
 **Flexible disbursement options** for approved aids:
 - 🏦 **Bank Transfer** (Recommended) - Direct deposit to registered account
@@ -522,35 +461,7 @@ Citizen: "✓ Proven (without revealing RM 3,200)" ✅ Privacy Preserved
 
 > "Built by **BlockNexa Labs**, MyFamilyLink brings **fairness, transparency, and privacy** to Malaysia's bantuan ecosystem. Rakyat wins. Government wins. Malaysia wins."
 
----
 
-## 🗺 Roadmap
-
-### Phase 1: Foundation (Q1 2025) ✅
-- [x] Core ZKP engine development
-- [x] MyKad NFC integration
-- [x] Basic eligibility rules (STR, fuel subsidy)
-- [x] Admin dashboard MVP
-
-### Phase 2: Integration (Q2 2025) 🚧
-- [ ] LHDN API integration (real data)
-- [ ] e-Kasih/JKM database connection
-- [ ] FPX/JomPay payment gateway
-- [ ] Multi-language support
-
-### Phase 3: Expansion (Q3 2025)
-- [ ] Education scholarship module
-- [ ] Healthcare subsidy integration
-- [ ] Disaster relief rapid deployment
-- [ ] Mobile app (iOS/Android)
-
-### Phase 4: Scale (Q4 2025)
-- [ ] Nationwide rollout pilot (selected states)
-- [ ] AI-powered fraud detection
-- [ ] Blockchain audit trail
-- [ ] Open API for third-party programs
-
----
 
 ## 🤝 Contributing
 
@@ -587,16 +498,59 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+## 👥 Team
+
+### GodamLah2.0 Hackathon - BlockNexa Labs
+
+This project was built for the **GodamLah2.0 Hackathon** by a passionate team of developers committed to solving real-world problems in Malaysia's aid distribution system.
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/samsuzzoha404.png" width="100px;" alt="Md Samsuzzoha Mondal"/>
+      <br />
+      <sub><b>Md Samsuzzoha Mondal</b></sub>
+      <br />
+      <a href="https://github.com/samsuzzoha404">GitHub</a>
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/100/3B82F6/FFFFFF?text=EA" width="100px;" alt="Easin Arafat"/>
+      <br />
+      <sub><b>Easin Arafat</b></sub>
+      <br />
+      <a href="#">GitHub</a>
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/100/3B82F6/FFFFFF?text=YM" width="100px;" alt="Youssef Mabrouk"/>
+      <br />
+      <sub><b>Youssef Mabrouk</b></sub>
+      <br />
+      <a href="#">GitHub</a>
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/100/3B82F6/FFFFFF?text=MA" width="100px;" alt="Muhammad Affan"/>
+      <br />
+      <sub><b>Muhammad Affan</b></sub>
+      <br />
+      <a href="#">GitHub</a>
+    </td>
+  </tr>
+</table>
+
+### Roles & Contributions
+
+- **Md Samsuzzoha Mondal** - Full Stack Development, ZKP Implementation
+- **Easin Arafat** - Backend Architecture, Database Design
+- **Youssef Mabrouk** - UI/UX Design
+- **Muhammad Affan** - System Architecture, Integration & Testing
+
+---
+
 ## 📞 Contact
 
-**BlockNexa Labs**
+**Project Repository:** [MyFamilyLink](https://github.com/samsuzzoha404/MyFamilyLink)
 
-- 🌐 Website: [blocknexalabs.com](https://blocknexalabs.com)
-- 📧 Email: hello@blocknexalabs.com
-- 🐦 Twitter: [@BlockNexaLabs](https://twitter.com/BlockNexaLabs)
-- 💼 LinkedIn: [BlockNexa Labs](https://linkedin.com/company/blocknexalabs)
-
-**Project Maintainer:** [Your Name](https://github.com/yourusername)
+**For inquiries:** samsuzzoha404@github.com
 
 ---
 
