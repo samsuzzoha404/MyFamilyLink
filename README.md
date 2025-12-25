@@ -42,7 +42,7 @@
 <td align="center" width="50%">
 <h3>👤 Citizen Portal</h3>
 <p><strong>Experience the user-facing application</strong></p>
-<a href="https://myfamilylink-citizen.vercel.app" target="_blank">
+<a href="https://myfamilylink.vercel.app/" target="_blank">
   <img src="https://img.shields.io/badge/🚀_Launch_Citizen_Portal-4CAF50?style=for-the-badge&logoColor=white" alt="Citizen Portal" />
 </a>
 <br><br>
@@ -53,7 +53,7 @@
 <td align="center" width="50%">
 <h3>👨‍💼 Admin Dashboard</h3>
 <p><strong>Explore the management interface</strong></p>
-<a href="https://myfamilylink-admin.vercel.app" target="_blank">
+<a href="https://myadmin-beige.vercel.app/" target="_blank">
   <img src="https://img.shields.io/badge/🎯_Launch_Admin_Dashboard-2196F3?style=for-the-badge&logoColor=white" alt="Admin Dashboard" />
 </a>
 <br><br>
