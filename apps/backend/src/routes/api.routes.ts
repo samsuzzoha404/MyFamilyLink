@@ -6,6 +6,12 @@ import {
   getApplicationById,
   rejectApplication,
   getDashboardStats,
+  bulkApproveApplications,
+  bulkRejectApplications,
+  getActivityFeed,
+  verifyHashId,
+  simulateEligibility,
+  getAdminMetrics,
 } from '../controllers/admin.controller';
 import zkproofRoutes from './zkproof.routes';
 
@@ -50,26 +56,67 @@ router.get('/admin/dashboard/stats', getDashboardStats);
 router.get('/admin/applications', getAllApplications);
 
 /**
- * GET /admin/application/:id
+ * GET /admin/applications/:id
  * Get single application details
  * Returns: { application: {...} }
  */
-router.get('/admin/application/:id', getApplicationById);
+router.get('/admin/applications/:id', getApplicationById);
 
 /**
- * PATCH /admin/application/:id/approve
+ * PATCH /admin/applications/:id/approve
  * Manually approve a pending application
  * Returns: { application, secretCode }
  */
-router.patch('/admin/application/:id/approve', approveApplication);
+router.patch('/admin/applications/:id/approve', approveApplication);
 
 /**
- * PATCH /admin/application/:id/reject
+ * PATCH /admin/applications/:id/reject
  * Reject an application
  * Body: { reason: string }
  * Returns: { application }
  */
-router.patch('/admin/application/:id/reject', rejectApplication);
+router.patch('/admin/applications/:id/reject', rejectApplication);
+
+/**
+ * POST /admin/applications/bulk-approve
+ * Bulk approve multiple applications
+ * Body: { applicationIds: string[] }
+ */
+router.post('/admin/applications/bulk-approve', bulkApproveApplications);
+
+/**
+ * POST /admin/applications/bulk-reject
+ * Bulk reject multiple applications
+ * Body: { applicationIds: string[], reason?: string }
+ */
+router.post('/admin/applications/bulk-reject', bulkRejectApplications);
+
+/**
+ * GET /admin/activity-feed
+ * Get recent activity logs
+ * Query: { limit?: number }
+ */
+router.get('/admin/activity-feed', getActivityFeed);
+
+/**
+ * POST /admin/verify-hash
+ * Verify a hash ID
+ * Body: { hashId: string }
+ */
+router.post('/admin/verify-hash', verifyHashId);
+
+/**
+ * POST /admin/simulate-eligibility
+ * Simulate eligibility for testing
+ * Body: { householdIncome: number, householdSize: number, programName: string }
+ */
+router.post('/admin/simulate-eligibility', simulateEligibility);
+
+/**
+ * GET /admin/metrics
+ * Get admin performance metrics
+ */
+router.get('/admin/metrics', getAdminMetrics);
 
 // ============================================
 // ZK PROOF ROUTES

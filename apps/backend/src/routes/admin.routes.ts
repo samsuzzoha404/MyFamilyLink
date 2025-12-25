@@ -1,30 +1,31 @@
 import { Router } from 'express';
 import { authenticate, authorize } from '../middleware/auth.js';
+import * as adminController from '../controllers/admin.controller';
 
 const router = Router();
 
 router.use(authenticate);
 router.use(authorize('admin'));
 
-// TODO: Implement admin routes
-router.get('/dashboard/stats', (req, res) => {
-  res.json({ message: 'Dashboard stats endpoint - to be implemented' });
-});
+// Dashboard & Statistics
+router.get('/dashboard/stats', adminController.getDashboardStats);
+router.get('/metrics', adminController.getAdminMetrics);
 
-router.get('/applications/pending', (req, res) => {
-  res.json({ message: 'Pending applications endpoint - to be implemented' });
-});
+// Applications Management
+router.get('/applications', adminController.getAllApplications);
+router.get('/applications/:id', adminController.getApplicationById);
+router.patch('/applications/:id/approve', adminController.approveApplication);
+router.patch('/applications/:id/reject', adminController.rejectApplication);
 
-router.get('/audit-logs', (req, res) => {
-  res.json({ message: 'Audit logs endpoint - to be implemented' });
-});
+// Bulk Actions
+router.post('/applications/bulk-approve', adminController.bulkApproveApplications);
+router.post('/applications/bulk-reject', adminController.bulkRejectApplications);
 
-router.get('/settings', (req, res) => {
-  res.json({ message: 'System settings endpoint - to be implemented' });
-});
+// Activity & Monitoring
+router.get('/activity-feed', adminController.getActivityFeed);
+router.post('/verify-hash', adminController.verifyHashId);
 
-router.patch('/settings', (req, res) => {
-  res.json({ message: 'Update settings endpoint - to be implemented' });
-});
+// Tools
+router.post('/simulate-eligibility', adminController.simulateEligibility);
 
 export default router;

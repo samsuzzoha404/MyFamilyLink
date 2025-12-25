@@ -11,7 +11,14 @@ const app: Application = express();
 
 // CORS - Allow citizen and admin frontends
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:8080', 'http://localhost:8081'],
+  origin: [
+    'http://localhost:5173', 
+    'http://localhost:5174', 
+    'http://localhost:8080', 
+    'http://localhost:8081',
+    'https://myadmin-beige.vercel.app',
+    'https://myfamilylink.vercel.app'
+  ],
   credentials: true,
 }));
 
@@ -23,6 +30,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   console.log(`📨 ${req.method} ${req.path}`);
   next();
+});
+
+// Database connection middleware for API routes (lazy connection)
+app.use('/api', async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error('Database connection failed:', error);
+    res.status(503).json({
+      success: false,
+      message: 'Database connection unavailable',
+    });
+  }
 });
 
 // ============================================
@@ -55,28 +76,32 @@ app.use((req: Request, res: Response) => {
 
 const PORT = process.env.PORT || 3000;
 
-const startServer = async () => {
-  try {
-    // Connect to MongoDB first
-    await connectDB();
-
-    // Then start the server
-    app.listen(PORT, () => {
-      console.log('\n🚀 ════════════════════════════════════════════════════════');
-      console.log(`   MyFamilyLink Backend Server`);
-      console.log(`   Privacy-Preserving Aid Distribution Engine`);
-      console.log('   ════════════════════════════════════════════════════════');
-      console.log(`   🌐 Server running on: http://localhost:${PORT}`);
-      console.log(`   📊 Health check: http://localhost:${PORT}/health`);
-      console.log(`   🔐 Privacy Mode: Active (Zero-Knowledge Simulation)`);
-      console.log('   ════════════════════════════════════════════════════════\n');
-    });
-  } catch (error) {
-    console.error('❌ Failed to start server:', error);
-    process.exit(1);
-  }
-};
-
-startServer();
-
+// For Vercel serverless, export the app directly
 export default app;
+
+// Only run the server if not in serverless environment
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  const startServer = async () => {
+    try {
+      // Connect to MongoDB first
+      await connectDB();
+
+      // Then start the server
+      app.listen(PORT, () => {
+        console.log('\n🚀 ════════════════════════════════════════════════════════');
+        console.log(`   MyFamilyLink Backend Server`);
+        console.log(`   Privacy-Preserving Aid Distribution Engine`);
+        console.log('   ════════════════════════════════════════════════════════');
+        console.log(`   🌐 Server running on: http://localhost:${PORT}`);
+        console.log(`   📊 Health check: http://localhost:${PORT}/health`);
+        console.log(`   🔐 Privacy Mode: Active (Zero-Knowledge Simulation)`);
+        console.log('   ════════════════════════════════════════════════════════\n');
+      });
+    } catch (error) {
+      console.error('❌ Failed to start server:', error);
+      process.exit(1);
+    }
+  };
+
+  startServer();
+}

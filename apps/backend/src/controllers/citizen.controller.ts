@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import crypto from 'crypto';
 import Citizen from '../models/Citizen';
 import Application from '../models/Application';
+import ActivityLog from '../models/ActivityLog';
+import { calculateRiskScore, generateHashId, determineRegion } from '../utils/riskScoring';
 
 /**
  * Generate a random session token (simulating ZK-proof token)
@@ -157,21 +159,30 @@ export const submitApplication = async (req: Request, res: Response): Promise<vo
     // Subra (income > 5000): Rejected
     let status: 'Pending' | 'Disbursed' | 'Rejected' = 'Pending';
     let secretCode: string | null = null;
+    let isAutoApproved = false;
+
+    // Calculate risk score
+    const riskData = await calculateRiskScore(citizen._id.toString(), programName, aidAmount);
+    const region = determineRegion(citizen.mykadNumber);
+    const hashId = generateHashId(citizen.mykadNumber);
 
     if (citizen.householdIncome > 5000) {
       // High income - Reject
       status = 'Rejected';
+      isAutoApproved = false;
     } else if (citizen.householdIncome > 2500 && citizen.householdIncome <= 5000) {
       // Borderline - Pending manual review
       status = 'Pending';
+      isAutoApproved = false;
     } else {
       // Low income - Auto-approve and disburse
       status = 'Disbursed';
       secretCode = generateSecretCode();
+      isAutoApproved = true;
       mockBankTransfer(citizen.fullName, aidAmount, accountDetails || {}, secretCode);
     }
 
-    // Create application
+    // Create application with risk scoring
     const application = await Application.create({
       citizenId: citizen._id,
       applicantName: citizen.fullName,
@@ -181,9 +192,23 @@ export const submitApplication = async (req: Request, res: Response): Promise<vo
       secretCode,
       disbursementMethod: 'Bank Transfer',
       accountDetails: accountDetails || {},
+      riskScore: riskData.score,
+      riskFactors: riskData.factors,
+      isAutoApproved,
+      region,
     });
 
-    console.log(`📝 Application submitted: ${citizen.fullName} - ${programName} (${status})`);
+    // Log activity
+    await ActivityLog.create({
+      action: isAutoApproved ? 'Auto-approved' : status === 'Rejected' ? 'Auto-rejected' : 'Application submitted',
+      performedBy: 'System',
+      hashId,
+      details: `${programName} - RM ${aidAmount}`,
+      applicationId: application._id,
+      metadata: { riskScore: riskData.score, region },
+    });
+
+    console.log(`📝 Application submitted: ${citizen.fullName} - ${programName} (${status}) - Risk: ${riskData.score}`);
 
     // Clear session token after use (one-time use)
     citizen.currentSessionToken = null;

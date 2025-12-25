@@ -14,6 +14,15 @@ export interface IApplication extends Document {
     accountNumber?: string;
     recipientName?: string;
   };
+  // Risk & Fraud Detection
+  riskScore: number;
+  riskFactors: string[];
+  isAutoApproved: boolean;
+  reviewedBy?: string;
+  reviewedAt?: Date;
+  approvalDuration?: number; // in seconds
+  // Regional & Tracking
+  region?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -58,6 +67,36 @@ const ApplicationSchema = new Schema<IApplication>(
       bankName: String,
       accountNumber: String,
       recipientName: String,
+    },
+    riskScore: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 100,
+    },
+    riskFactors: {
+      type: [String],
+      default: [],
+    },
+    isAutoApproved: {
+      type: Boolean,
+      default: false,
+    },
+    reviewedBy: {
+      type: String,
+      default: null,
+    },
+    reviewedAt: {
+      type: Date,
+      default: null,
+    },
+    approvalDuration: {
+      type: Number,
+      default: null,
+    },
+    region: {
+      type: String,
+      default: 'Selangor',
     },
   },
   {
