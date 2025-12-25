@@ -1,0 +1,25 @@
+{
+  "name": "@myfamilylink/shared",
+  "version": "1.0.0",
+  "description": "Shared types, utilities, and constants for MyFamilyLink",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "shared",
+    "types",
+    "utilities"
+  ],
+  "author": "BlockNexa Labs",
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

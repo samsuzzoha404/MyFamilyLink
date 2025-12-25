@@ -14,7 +14,7 @@ Built by **BlockNexa Labs**
 
 [![GodamLah2.0](https://img.shields.io/badge/GodamLah-2.0-orange)](https://godam.my)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-18-blue)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Zero-Knowledge](https://img.shields.io/badge/ZK-Proofs-purple)](https://en.wikipedia.org/wiki/Zero-knowledge_proof)
 
