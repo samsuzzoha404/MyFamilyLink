@@ -15,18 +15,6 @@
 </p>
 
 <p align="center">
-  <a href="https://myfamilylink-citizen.vercel.app" target="_blank">
-    <img src="https://img.shields.io/badge/🎯_Citizen_Portal-Live_Demo-4CAF50?style=for-the-badge" alt="Citizen Portal" />
-  </a>
-  <a href="https://myfamilylink-admin.vercel.app" target="_blank">
-    <img src="https://img.shields.io/badge/👨‍💼_Admin_Dashboard-Live_Demo-2196F3?style=for-the-badge" alt="Admin Dashboard" />
-  </a>
-  <a href="https://myfamilylink-backend.vercel.app" target="_blank">
-    <img src="https://img.shields.io/badge/🔧_Backend_API-Live-FF9800?style=for-the-badge" alt="Backend API" />
-  </a>
-</p>
-
-<p align="center">
   <a href="#-overview">Overview</a> •
   <a href="#-features">Features</a> •
   <a href="#-architecture">Architecture</a> •
@@ -38,6 +26,45 @@
 <p align="center">
   <strong>🏆 Built for GodamLah2.0 Hackathon by BlockNexa Labs</strong>
 </p>
+
+</div>
+
+---
+
+## 🌐 Live Demo
+
+<div align="center">
+
+### Try MyFamilyLink Now - No Installation Required!
+
+<table>
+<tr>
+<td align="center" width="50%">
+<h3>👤 Citizen Portal</h3>
+<p><strong>Experience the user-facing application</strong></p>
+<a href="https://myfamilylink-citizen.vercel.app" target="_blank">
+  <img src="https://img.shields.io/badge/🚀_Launch_Citizen_Portal-4CAF50?style=for-the-badge&logoColor=white" alt="Citizen Portal" />
+</a>
+<br><br>
+<p><em>Test Account:</em></p>
+<code>MyKad: 990101-01-5678</code><br>
+<code>Password: citizen123</code>
+</td>
+<td align="center" width="50%">
+<h3>👨‍💼 Admin Dashboard</h3>
+<p><strong>Explore the management interface</strong></p>
+<a href="https://myfamilylink-admin.vercel.app" target="_blank">
+  <img src="https://img.shields.io/badge/🎯_Launch_Admin_Dashboard-2196F3?style=for-the-badge&logoColor=white" alt="Admin Dashboard" />
+</a>
+<br><br>
+<p><em>Test Account:</em></p>
+<code>Email: admin@myfamilylink.gov.my</code><br>
+<code>Password: admin123</code>
+</td>
+</tr>
+</table>
+
+<p><strong>💡 Tip:</strong> Open both portals side-by-side to see the complete workflow!</p>
 
 </div>
 
