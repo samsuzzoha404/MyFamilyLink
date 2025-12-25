@@ -15,6 +15,18 @@
 </p>
 
 <p align="center">
+  <a href="https://myfamilylink-citizen.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/🎯_Citizen_Portal-Live_Demo-4CAF50?style=for-the-badge" alt="Citizen Portal" />
+  </a>
+  <a href="https://myfamilylink-admin.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/👨‍💼_Admin_Dashboard-Live_Demo-2196F3?style=for-the-badge" alt="Admin Dashboard" />
+  </a>
+  <a href="https://myfamilylink-backend.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/🔧_Backend_API-Live-FF9800?style=for-the-badge" alt="Backend API" />
+  </a>
+</p>
+
+<p align="center">
   <a href="#-overview">Overview</a> •
   <a href="#-features">Features</a> •
   <a href="#-architecture">Architecture</a> •
